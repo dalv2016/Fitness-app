@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Slogan">Lets do it</string>
     <string name="progressBar_text">Your progress</string>
+    <string name="day">Day</string>
 </resources>

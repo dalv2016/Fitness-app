@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="exercises">
+        <item>Relax|30|fitness_bg.jpg</item>
+    </string-array>
+
+    <string-array name="day_exercises">
+        <item>0,0,0,0,0,0,0</item>
+    </string-array>
+</resources>

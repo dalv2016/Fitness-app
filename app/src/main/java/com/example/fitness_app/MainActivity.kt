@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.fitness_app.Fragments.DaysFragment
 import com.example.fitness_app.utils.FragmentManager
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -12,5 +13,10 @@ class MainActivity : AppCompatActivity() {
         FragmentManager.setFragment(DaysFragment.newInstance(),this)
 
 
+    }
+
+    override fun onBackPressed() {
+        if(FragmentManager.currentFrafment is DaysFragment) super.onBackPressed()
+        else FragmentManager.setFragment(DaysFragment.newInstance(),this)
     }
 }
