@@ -12,9 +12,9 @@ class DayHolder(view : View): RecyclerView.ViewHolder(view){
 
     fun setData(day: DayModel, listener: Listener){
         val name = binding.root.context.getString(R.string.day) + " ${adapterPosition+ 1}"
-        binding.name.text = name;
+        binding.tvName.text = name;
         val exCount = day.execises.split(",").size
-        binding.exCounter.text = exCount.toString()
+        binding.tvExCounter.text = exCount.toString()
         binding.cardView2.setOnClickListener{
             listener.onClick(day)
         }

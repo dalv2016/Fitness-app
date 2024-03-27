@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="exercises">
-        <item>Relax|30|fitness_bg.jpg</item>
+        <item>Relax|30|relax2.gif</item>
     </string-array>
 
     <string-array name="day_exercises">
