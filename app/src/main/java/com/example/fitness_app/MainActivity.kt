@@ -2,14 +2,19 @@ package com.example.fitness_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.fitness_app.Fragments.DaysFragment
 import com.example.fitness_app.utils.FragmentManager
+import com.example.fitness_app.utils.MainViewModel
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
+    private val model: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        model.pref = getSharedPreferences("main", MODE_PRIVATE)
         FragmentManager.setFragment(DaysFragment.newInstance(),this)
 
 

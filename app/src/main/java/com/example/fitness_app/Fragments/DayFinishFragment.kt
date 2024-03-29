@@ -6,55 +6,43 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitness_app.Models.ExerciseAdapter.ExrciseAdapter
+import com.example.fitness_app.databinding.DayFinishBinding
 import com.example.fitness_app.databinding.ExercisesListFragmentBinding
 import com.example.fitness_app.databinding.WaitingFragmentBinding
 import com.example.fitness_app.utils.FragmentManager
 import com.example.fitness_app.utils.MainViewModel
 import com.example.fitness_app.utils.Time
+import pl.droidsonroids.gif.GifDrawable
 
 
 class DayFinishFragment : Fragment() {
 
-    private lateinit var binding: WaitingFragmentBinding
-    private lateinit var timer: CountDownTimer
+    private lateinit var binding: DayFinishBinding
+    private var ab: ActionBar? = null
+
     val model: MainViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = WaitingFragmentBinding.inflate(inflater, container,false)
+        binding = DayFinishBinding.inflate(inflater, container,false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.progressBar.max = 11000
-        StartTimer()
-
-
-    }
-    private fun StartTimer () {
-        timer = object : CountDownTimer(11000,100){
-            override fun onTick(restTime: Long) {
-                binding.tvTimer.text = Time.getTime(restTime)
-                binding.progressBar.progress = restTime.toInt()
-            }
-
-            override fun onFinish() {
-                FragmentManager.setFragment(ExerciseFragment.newInstance(), activity as AppCompatActivity)
-            }
-        }.start()
-    }
-
-
-    override fun onDetach() {
-        super.onDetach()
-        timer.cancel()
+        ab= (activity as AppCompatActivity).supportActionBar
+        ab?.title = "Done"
+        binding.imgCongrat.setImageDrawable(GifDrawable((activity as AppCompatActivity ).assets,"congrats.gif"))
+        binding.btnDone.setOnClickListener{
+            FragmentManager.setFragment(DaysFragment.newInstance(), activity as AppCompatActivity)
+        }
     }
     companion object {
         @JvmStatic

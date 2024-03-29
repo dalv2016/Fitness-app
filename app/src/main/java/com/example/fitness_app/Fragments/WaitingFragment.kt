@@ -20,7 +20,6 @@ import com.example.fitness_app.utils.Time
 class WaitingFragment : Fragment() {
 
     private lateinit var binding: WaitingFragmentBinding
-    private lateinit var adapter: ExrciseAdapter
     private lateinit var timer: CountDownTimer
     val model: MainViewModel by activityViewModels()
     override fun onCreateView(

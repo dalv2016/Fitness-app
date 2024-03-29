@@ -13,7 +13,7 @@ import com.example.fitness_app.Models.DataClass.ExerciseModel
 import com.example.fitness_app.Models.DayAdapter.DaysAdapter
 import com.example.fitness_app.intarfaces.Listener
 import com.example.fitness_app.R
-import com.example.fitness_app.databinding.FragmentDaysBinding
+import com.example.fitness_app.databinding.DaysFragmentBinding
 import com.example.fitness_app.utils.FragmentManager
 import com.example.fitness_app.utils.MainViewModel
 import kotlin.collections.ArrayList
@@ -21,14 +21,14 @@ import kotlin.collections.ArrayList
 
 class DaysFragment : Fragment(), Listener {
 
-    private lateinit var binding: FragmentDaysBinding
+    private lateinit var binding: DaysFragmentBinding
     val model: MainViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentDaysBinding.inflate(inflater, container,false)
+        binding = DaysFragmentBinding.inflate(inflater, container,false)
         return binding.root
     }
 
@@ -47,7 +47,7 @@ class DaysFragment : Fragment(), Listener {
 
         val tmpArray = ArrayList<DayModel>()
         resources.getStringArray(R.array.day_exercises).forEach {
-            tmpArray.add(DayModel(it,false))
+            tmpArray.add(DayModel(it,0,false))
         }
         return tmpArray
     }
@@ -61,7 +61,7 @@ class DaysFragment : Fragment(), Listener {
             val exerciseList =resources.getStringArray(R.array.exercises)
             val exercise = exerciseList[it.toInt()]
             val exerciseArray = exercise.split("|")
-            tmpList.add(ExerciseModel(exerciseArray[0],exerciseArray[1],exerciseArray[2]))
+            tmpList.add(ExerciseModel(exerciseArray[0],exerciseArray[1],false,exerciseArray[2]))
         }
         model.mutavleListExetces.value = tmpList
         //model.mutavleListExetces.observe(viewLifecycleOwner,{})
@@ -69,6 +69,7 @@ class DaysFragment : Fragment(), Listener {
     }
     override fun onClick(day: DayModel) {
         fillExerciseList(day)
+        model.currentDay = day.dayNumber
         FragmentManager.setFragment(ExercisesListFragment.newInstance(),activity as AppCompatActivity)
     }
 }

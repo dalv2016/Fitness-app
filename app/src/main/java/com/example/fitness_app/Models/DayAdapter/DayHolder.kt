@@ -16,7 +16,7 @@ class DayHolder(view : View): RecyclerView.ViewHolder(view){
         val exCount = day.execises.split(",").size
         binding.tvExCounter.text = exCount.toString()
         binding.cardView2.setOnClickListener{
-            listener.onClick(day)
+            listener.onClick(day.copy(dayNumber = adapterPosition+1))
         }
     }
 }

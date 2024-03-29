@@ -33,7 +33,11 @@ class ExercisesListFragment : Fragment() {
         init()
         model.mutavleListExetces.observe(viewLifecycleOwner){
             adapter.submitList(it)
+            for( i in 0 until model.getPref(model.currentDay.toString())){
+            it[i] = it[i].copy(isDone = true)
         }
+        }
+
     }
     private fun init () {
         adapter = ExrciseAdapter()
@@ -43,6 +47,7 @@ class ExercisesListFragment : Fragment() {
             FragmentManager.setFragment(WaitingFragment.newInstance(), activity as AppCompatActivity)
         }
     }
+
     companion object {
         @JvmStatic
         fun newInstance() = ExercisesListFragment()
