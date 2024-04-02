@@ -26,6 +26,7 @@ class ExerciseFragment : Fragment() {
     val model: MainViewModel by activityViewModels()
     private var exList: ArrayList<ExerciseModel>? = null
     private var exerciseCounter = 0
+    private var currentDay = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +38,8 @@ class ExerciseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        exerciseCounter = model.getPref(model.currentDay.toString())
+        currentDay = model.currentDay
+        exerciseCounter = model.getPref()
         ab= (activity as AppCompatActivity).supportActionBar
         model.mutavleListExetces.observe(viewLifecycleOwner){
             exList = it
@@ -57,13 +59,14 @@ class ExerciseFragment : Fragment() {
             setTimeType(ex)
         }
         else{
+            exerciseCounter++;
             FragmentManager.setFragment(DayFinishFragment.newInstance(), activity as AppCompatActivity)
         }
     }
 
     private fun showNextExercise(){
         if (exerciseCounter<exList?.size!!){
-            val ex = exList?.get(exerciseCounter++) ?: return
+            val ex = exList?.get(exerciseCounter) ?: return
             binding.imgNextExercise.setImageDrawable(GifDrawable(binding.root.context.assets,ex.image))
         }
         else{
@@ -80,10 +83,14 @@ class ExerciseFragment : Fragment() {
     }
 
     private fun setExersiceType(exercise: ExerciseModel){
+
         if(exercise.time.startsWith("x")){
+            timer?.cancel()
             binding.tvTime.text = exercise.time
+            binding.progressBar3.visibility = View.GONE
         }
         else{
+            binding.progressBar3.visibility = View.VISIBLE
             StartTimer(exercise)
         }
     }
@@ -113,7 +120,7 @@ class ExerciseFragment : Fragment() {
     }
     override fun onDetach() {
         super.onDetach()
-        model.savePref(model.currentDay.toString(),exerciseCounter-1)
+        model.savePref(currentDay.toString(),exerciseCounter-1)
         timer?.cancel()
     }
     companion object {

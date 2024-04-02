@@ -33,7 +33,7 @@ class ExercisesListFragment : Fragment() {
         init()
         model.mutavleListExetces.observe(viewLifecycleOwner){
             adapter.submitList(it)
-            for( i in 0 until model.getPref(model.currentDay.toString())){
+            for( i in 0 until model.getPref()){
             it[i] = it[i].copy(isDone = true)
         }
         }
