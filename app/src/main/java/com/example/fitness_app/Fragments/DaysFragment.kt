@@ -11,9 +11,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fitness_app.Models.DataClass.DayModel
-import com.example.fitness_app.Models.DataClass.ExerciseModel
-import com.example.fitness_app.Models.DayAdapter.DaysAdapter
+import com.example.fitness_app.db.DayModel
+import com.example.fitness_app.db.ExerciseModel
+import com.example.fitness_app.Adapters.DayAdapter.DaysAdapter
 import com.example.fitness_app.intarfaces.Listener
 import com.example.fitness_app.R
 import com.example.fitness_app.databinding.DaysFragmentBinding

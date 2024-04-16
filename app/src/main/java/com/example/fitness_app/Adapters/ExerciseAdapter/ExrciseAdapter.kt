@@ -1,11 +1,10 @@
-package com.example.fitness_app.Models.ExerciseAdapter
+package com.example.fitness_app.Adapters.ExerciseAdapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.example.fitness_app.Models.DataClass.ExerciseModel
+import com.example.fitness_app.db.ExerciseModel
 import com.example.fitness_app.R
-import com.example.fitness_app.intarfaces.Listener
 
 class ExrciseAdapter() : ListAdapter<ExerciseModel, ExerciseHolder>(MyCoparator()) {
 

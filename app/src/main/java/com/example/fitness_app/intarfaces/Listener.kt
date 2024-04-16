@@ -1,6 +1,6 @@
 package com.example.fitness_app.intarfaces
 
-import com.example.fitness_app.Models.DataClass.DayModel
+import com.example.fitness_app.db.DayModel
 
 interface Listener {
 

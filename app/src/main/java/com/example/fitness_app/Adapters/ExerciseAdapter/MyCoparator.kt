@@ -1,8 +1,7 @@
-package com.example.fitness_app.Models.ExerciseAdapter
+package com.example.fitness_app.Adapters.ExerciseAdapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.fitness_app.Models.DataClass.DayModel
-import com.example.fitness_app.Models.DataClass.ExerciseModel
+import com.example.fitness_app.db.ExerciseModel
 
 class MyCoparator : DiffUtil.ItemCallback<ExerciseModel>() {
 

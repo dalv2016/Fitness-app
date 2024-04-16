@@ -1,9 +1,9 @@
-package com.example.fitness_app.Models.DayAdapter
+package com.example.fitness_app.Adapters.DayAdapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.example.fitness_app.Models.DataClass.DayModel
+import com.example.fitness_app.db.DayModel
 import com.example.fitness_app.R
 import com.example.fitness_app.intarfaces.Listener
 

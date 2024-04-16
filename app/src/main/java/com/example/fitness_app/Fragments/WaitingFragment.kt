@@ -8,9 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fitness_app.Models.ExerciseAdapter.ExrciseAdapter
-import com.example.fitness_app.databinding.ExercisesListFragmentBinding
 import com.example.fitness_app.databinding.WaitingFragmentBinding
 import com.example.fitness_app.utils.FragmentManager
 import com.example.fitness_app.utils.MainViewModel
