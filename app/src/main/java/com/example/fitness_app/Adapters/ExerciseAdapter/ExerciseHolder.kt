@@ -13,6 +13,6 @@ class ExerciseHolder(view : View): RecyclerView.ViewHolder(view){
         binding.tvName.text = exercise.name
         binding.tvCounter.text = exercise.time
         binding.imageEx.setImageDrawable(GifDrawable(binding.root.context.assets, exercise.image))
-        binding.checkBoxDoneEx.isChecked = exercise.isDone
+        binding.imageView2.visibility = if(exercise.isDone) View.VISIBLE else View.INVISIBLE
     }
 }

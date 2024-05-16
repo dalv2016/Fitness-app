@@ -15,8 +15,8 @@ class DayHolder(view : View): RecyclerView.ViewHolder(view){
         binding.tvName.text = name;
         val exCount = day.execises.split(",").size
         binding.tvExCounter.text = exCount.toString()
-        binding.checkBoxDoneDay.isChecked  = day.isDone
-        binding.cardView2.setOnClickListener{
+        binding.imgDayDone.visibility = if(day.isDone) View.VISIBLE else View.INVISIBLE
+        binding.imageView.setOnClickListener{
             listener.onClick(day.copy(dayNumber = adapterPosition+1))
         }
     }

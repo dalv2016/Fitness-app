@@ -12,9 +12,9 @@ interface DaysDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDay(dayModel: DayModel)
 
-    @Query("Select * From dau_model_table Where id = :dayId ")
+    @Query("Select * From day_model_table Where id = :dayId ")
     suspend fun getDayById(dayId: Int):DayModel
 
-    @Query("Select * From dau_model_table Where difficulty = :difficulty")
-    suspend fun getDaysByDifficulty(difficulty: String):Flow<List<DayModel>>
+    @Query("Select * From day_model_table Where difficulty = :difficulty")
+    fun getDaysByDifficulty(difficulty: String):Flow<List<DayModel>>
 }

@@ -9,7 +9,6 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.example.fitness_app.databinding.DayFinishBinding
-import com.example.fitness_app.utils.FragmentManager
 import com.example.fitness_app.utils.MainViewModel
 import pl.droidsonroids.gif.GifDrawable
 
@@ -35,7 +34,7 @@ class DayFinishFragment : Fragment() {
         ab?.title = "Done"
         binding.imgCongrat.setImageDrawable(GifDrawable((activity as AppCompatActivity ).assets,"congrats.gif"))
         binding.btnDone.setOnClickListener{
-            FragmentManager.setFragment(DaysFragment.newInstance(), activity as AppCompatActivity)
+            //FragmentManager.setFragment(DaysFragment.newInstance(), activity as AppCompatActivity)
         }
     }
     companion object {

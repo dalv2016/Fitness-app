@@ -5,4 +5,7 @@
     <string name="Slogan">Lets do it</string>
     <string name="progressBar_text">Your progress</string>
     <string name="day">Day</string>
+    <string name="easy">Easy</string>
+    <string name="middle">Middle</string>
+    <string name="hard">Hard</string>
 </resources>
