@@ -3,7 +3,7 @@ package com.example.fitness_app.Adapters
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.fitness_app.Fragments.DaysFragment
-import com.example.fitness_app.utils.TrainingUtils
+import com.example.fitness_app.utils.Objects.TrainingUtils
 
 class VpAdapter(fragment: Fragment):FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {

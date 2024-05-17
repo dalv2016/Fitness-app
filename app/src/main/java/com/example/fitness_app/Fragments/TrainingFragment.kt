@@ -10,9 +10,9 @@ import android.view.animation.AlphaAnimation
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.fitness_app.databinding.FragmentTrainingBinding
-import com.example.fitness_app.utils.TrainingUtils
+import com.example.fitness_app.utils.Objects.TrainingUtils
 import com.example.fitness_app.Adapters.VpAdapter
-import com.example.fitness_app.utils.DaysViewModel
+import com.example.fitness_app.utils.ViewModels.DaysViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class TrainingFragment : Fragment() {

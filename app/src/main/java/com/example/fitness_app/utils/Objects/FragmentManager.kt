@@ -1,4 +1,4 @@
-package com.example.fitness_app.utils
+package com.example.fitness_app.utils.Objects
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

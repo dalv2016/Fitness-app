@@ -17,5 +17,13 @@
     <fragment
         android:id="@+id/exercisesListFragment"
         android:name="com.example.fitness_app.Fragments.ExercisesListFragment"
-        android:label="ExercisesListFragment" />
+        android:label="ExercisesListFragment" >
+        <action
+            android:id="@+id/action_exercisesListFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFragment"
+        android:name="com.example.fitness_app.Fragments.ExerciseFragment"
+        android:label="ExerciseFragment" />
 </navigation>

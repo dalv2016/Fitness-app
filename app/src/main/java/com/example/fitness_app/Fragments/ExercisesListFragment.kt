@@ -1,23 +1,21 @@
 package com.example.fitness_app.Fragments
 
 import android.animation.ObjectAnimator
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fitness_app.Adapters.ExerciseAdapter.ExrciseAdapter
+import com.example.fitness_app.Adapters.ExrciseAdapter
 import com.example.fitness_app.R
 import com.example.fitness_app.databinding.ExercisesListFragmentBinding
 import com.example.fitness_app.db.DayModel
-import com.example.fitness_app.utils.ExerciseListViewModel
-import com.example.fitness_app.utils.FragmentManager
-import com.example.fitness_app.utils.MainViewModel
+import com.example.fitness_app.utils.ViewModels.ExerciseListViewModel
+import com.example.fitness_app.utils.getDayFromArguments
 
 
 class ExercisesListFragment : Fragment() {
@@ -37,11 +35,11 @@ class ExercisesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dayModel = getDauFromArguments()
+        dayModel = getDayFromArguments()
         init()
         topCardObserver()
         exerciseListObserver()
-        dayModel = getDauFromArguments()
+        dayModel = getDayFromArguments()
         model.getDayExerciseList(dayModel)
         /*model.mutavleListExetces.observe(viewLifecycleOwner){
             adapter.submitList(it)
@@ -56,20 +54,14 @@ class ExercisesListFragment : Fragment() {
         binding.rcView.layoutManager = LinearLayoutManager(activity)
         binding.rcView.adapter = adapter
         binding.button.setOnClickListener{
-            FragmentManager.setFragment(WaitingFragment.newInstance(), activity as AppCompatActivity)
+            val bundle = Bundle().apply {
+                putSerializable("dau", dayModel)
+            }
+            findNavController().navigate(R.id.action_exercisesListFragment_to_exerciseFragment, bundle)
         }
     }
 
-    private fun getDauFromArguments():DayModel?{
-        return arguments.let{bundle ->
-            if(Build.VERSION.SDK_INT >= 33 ){
-                bundle?.getSerializable("day", DayModel::class.java)
-            }
-            else{
-                bundle?.getSerializable("day") as DayModel
-            }
-        }
-    }
+
 
     private fun exerciseListObserver(){
         model.exerciseList.observe(viewLifecycleOwner){list ->

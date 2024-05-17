@@ -6,12 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.example.fitness_app.databinding.WaitingFragmentBinding
-import com.example.fitness_app.utils.FragmentManager
-import com.example.fitness_app.utils.MainViewModel
-import com.example.fitness_app.utils.Time
+import com.example.fitness_app.utils.ViewModels.MainViewModel
+import com.example.fitness_app.utils.Objects.Time
 
 
 class WaitingFragment : Fragment() {
@@ -43,7 +41,7 @@ class WaitingFragment : Fragment() {
             }
 
             override fun onFinish() {
-                FragmentManager.setFragment(ExerciseFragment.newInstance(), activity as AppCompatActivity)
+
             }
         }.start()
     }

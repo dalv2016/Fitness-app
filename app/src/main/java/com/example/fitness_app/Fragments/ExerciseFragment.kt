@@ -11,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.example.fitness_app.db.ExerciseModel
 import com.example.fitness_app.databinding.ExerciseBinding
-import com.example.fitness_app.utils.FragmentManager
-import com.example.fitness_app.utils.MainViewModel
-import com.example.fitness_app.utils.Time
+import com.example.fitness_app.db.DayModel
+import com.example.fitness_app.utils.Objects.FragmentManager
+import com.example.fitness_app.utils.ViewModels.MainViewModel
+import com.example.fitness_app.utils.Objects.Time
+import com.example.fitness_app.utils.getDayFromArguments
 import pl.droidsonroids.gif.GifDrawable
 
 
@@ -24,8 +26,8 @@ class ExerciseFragment : Fragment() {
     private var ab: ActionBar? = null
     val model: MainViewModel by activityViewModels()
     private var exList: ArrayList<ExerciseModel>? = null
+    private var currentDay: DayModel? = null
     private var exerciseCounter = 0
-    private var currentDay = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,16 +39,17 @@ class ExerciseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        currentDay = model.currentDay
-        exerciseCounter = model.getPref()
+        currentDay = getDayFromArguments()
+
         ab= (activity as AppCompatActivity).supportActionBar
+        /*  exerciseCounter = model.getPref()
         model.mutavleListExetces.observe(viewLifecycleOwner){
             exList = it
             nextExercise()
         }
         binding.btnNext.setOnClickListener{
             nextExercise()
-        }
+        }*/
     }
 
     private fun nextExercise(){
@@ -66,10 +69,10 @@ class ExerciseFragment : Fragment() {
     private fun showNextExercise(){
         if (exerciseCounter<exList?.size!!){
             val ex = exList?.get(exerciseCounter) ?: return
-            binding.imgNextExercise.setImageDrawable(GifDrawable(binding.root.context.assets,ex.image))
+           // binding.imgNextExercise.setImageDrawable(GifDrawable(binding.root.context.assets,ex.image))
         }
         else{
-            binding.imgNextExercise.setImageDrawable(GifDrawable(binding.root.context.assets,"congrats.gif"))
+           // binding.imgNextExercise.setImageDrawable(GifDrawable(binding.root.context.assets,"congrats.gif"))
             binding.tvName.text = "Done"
         }
     }
@@ -121,10 +124,6 @@ class ExerciseFragment : Fragment() {
         super.onDetach()
         model.savePref(currentDay.toString(),exerciseCounter-1)
         timer?.cancel()
-    }
-    companion object {
-        @JvmStatic
-        fun newInstance() = ExerciseFragment()
     }
 
 }

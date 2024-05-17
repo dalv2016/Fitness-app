@@ -1,4 +1,4 @@
-package com.example.fitness_app.utils
+package com.example.fitness_app.utils.ViewModels
 
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData

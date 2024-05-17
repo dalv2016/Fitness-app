@@ -1,4 +1,4 @@
-package com.example.fitness_app.intarfaces
+package com.example.fitness_app.intarfaces.Dao
 
 import androidx.room.Dao
 import androidx.room.Insert

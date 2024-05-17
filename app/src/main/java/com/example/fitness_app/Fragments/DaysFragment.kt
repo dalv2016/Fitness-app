@@ -10,21 +10,19 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitness_app.db.DayModel
-import com.example.fitness_app.Adapters.DayAdapter.DaysAdapter
+import com.example.fitness_app.Adapters.DaysAdapter
 import com.example.fitness_app.R
 import com.example.fitness_app.intarfaces.Listener
 import com.example.fitness_app.databinding.DaysFragmentBinding
 import com.example.fitness_app.intarfaces.DialogListener
-import com.example.fitness_app.utils.DaysViewModel
-import com.example.fitness_app.utils.TrainingUtils
-import com.example.fitness_app.utils.DialogManager
-import com.example.fitness_app.utils.MainViewModel
+import com.example.fitness_app.utils.ViewModels.DaysViewModel
+import com.example.fitness_app.utils.Objects.DialogManager
 
 
 class DaysFragment : Fragment(), Listener {
 
     private lateinit var binding: DaysFragmentBinding
-    private lateinit var adapter:DaysAdapter
+    private lateinit var adapter: DaysAdapter
 
     val model: DaysViewModel by activityViewModels()
     override fun onCreateView(

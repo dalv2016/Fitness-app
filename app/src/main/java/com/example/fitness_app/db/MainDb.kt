@@ -2,10 +2,10 @@ package com.example.fitness_app.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.fitness_app.intarfaces.DaysDao
-import com.example.fitness_app.intarfaces.ExerciseDao
-import com.example.fitness_app.intarfaces.StatisticsDao
-import com.example.fitness_app.intarfaces.WeightDao
+import com.example.fitness_app.intarfaces.Dao.DaysDao
+import com.example.fitness_app.intarfaces.Dao.ExerciseDao
+import com.example.fitness_app.intarfaces.Dao.StatisticsDao
+import com.example.fitness_app.intarfaces.Dao.WeightDao
 
 @Database(
     entities = [

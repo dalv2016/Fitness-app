@@ -1,4 +1,4 @@
-package com.example.fitness_app.utils
+package com.example.fitness_app.utils.Objects
 
 data class TrainingTopCardModel (
     val imageId: Int,

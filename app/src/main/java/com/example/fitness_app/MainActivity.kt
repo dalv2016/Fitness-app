@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.fitness_app.Fragments.DaysFragment
 import com.example.fitness_app.Fragments.TrainingFragment
-import com.example.fitness_app.utils.FragmentManager
-import com.example.fitness_app.utils.MainViewModel
+import com.example.fitness_app.utils.Objects.FragmentManager
+import com.example.fitness_app.utils.ViewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

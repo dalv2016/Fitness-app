@@ -1,10 +1,11 @@
-package com.example.fitness_app.utils
+package com.example.fitness_app.utils.ViewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fitness_app.db.DayModel
 import com.example.fitness_app.db.MainDb
+import com.example.fitness_app.utils.Objects.TrainingTopCardModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
