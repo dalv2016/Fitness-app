@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,6 +36,7 @@ class ExercisesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.title = "Day: ${dayModel?.dayNumber}"
         dayModel = getDayFromArguments()
         init()
         topCardObserver()
@@ -89,7 +91,7 @@ class ExercisesListFragment : Fragment() {
                 textView2. visibility = View.VISIBLE
                 textView2.startAnimation(alfaAnimationText)
                 textView3.startAnimation(alfaAnimationText)
-                progressBar2.max = card.maxprogress
+                progressBar2.max = card.maxprogress * 100
                 animProgressBar(card.progress)
             }
         }

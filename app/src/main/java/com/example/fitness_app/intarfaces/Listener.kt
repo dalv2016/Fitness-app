@@ -6,5 +6,4 @@ interface Listener {
 
     fun onClick(day: DayModel)
 
-
 }

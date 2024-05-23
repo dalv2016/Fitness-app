@@ -47,37 +47,7 @@ class DaysFragment : Fragment(), Listener {
         binding.rcView.adapter = adapter
 
     }
-   /* private fun fillDaysArray(): ArrayList<DayModel>{
 
-        val tmpArray = ArrayList<DayModel>()
-        var doneDaysCounter = 0
-        resources.getStringArray(R.array.day_exercises).forEach {
-            model.currentDay++
-            val exCounter = it.split(",").size
-          //  tmpArray.add(DayModel(it,0,model.getPref() == exCounter))
-        }
-        binding.progressBar2.max = tmpArray.size
-        tmpArray.forEach{
-            if(it.isDone) doneDaysCounter++
-        }
-        updateDaysProgress(tmpArray.size - doneDaysCounter, tmpArray.size)
-        return tmpArray
-    }
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        return inflater.inflate(R.menu.main_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId ==R.id.reset){
-            DialogManager.showDialog(activity as AppCompatActivity, "Начать день заново?", object : DialogListener{
-                override fun onClick() {
-                        model.pref?.edit()?.clear()?.apply()
-                        adapter.submitList(fillDaysArray())
-                }
-            })
-        }
-        return super.onOptionsItemSelected(item)
-    }*/
     companion object {
         @JvmStatic
         fun newInstance() = DaysFragment()
@@ -98,36 +68,12 @@ class DaysFragment : Fragment(), Listener {
         super.onResume()
         updateAdapter()
     }
-    /*private fun fillExerciseList(day: DayModel){
-        val tmpList = ArrayList<ExerciseModel>()
-        day.execises.split(",").forEach{
-            val exerciseList =resources.getStringArray(R.array.exercises)
-            val exercise = exerciseList[it.toInt()]
-            val exerciseArray = exercise.split("|")
-          //  tmpList.add(ExerciseModel(exerciseArray[0],exerciseArray[1],false,exerciseArray[2]))
-        }
-        model.mutavleListExetces.value = tmpList
-        //model.mutavleListExetces.observe(viewLifecycleOwner,{})
-
-    }*/
     override fun onClick(day: DayModel) {
         if(day.isDone) {
-/*fillExerciseList(day)
-model.currentDay = day.dayNumber
-FragmentManager.setFraent(
-    ExercisesListFragment.newInstance(),
-    activity as AppCompatActivity
-)
-}
-else {*/
-    DialogManager.showDialog(activity as AppCompatActivity, "Начать день заново?", object : DialogListener{
+    DialogManager.showDialog(activity as AppCompatActivity, "Начать день заново?", object : DialogManager.Listener{
         override fun onClick() {
-            /*model.savePref(day.dayNumber.toString(), 0)
-            fillExerciseList(day)
-            model.currentDay = day.dayNumber
-            FragmentManager.setFragment(
-                ExercisesListFragment.newInstance(),
-                activity as AppCompatActivity)*/
+            model.resetSelectDay(day)
+            openEcersiceListFragment(day)
         }
     })
 }

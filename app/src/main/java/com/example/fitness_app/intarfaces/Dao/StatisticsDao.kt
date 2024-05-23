@@ -15,5 +15,9 @@ interface StatisticsDao {
     suspend fun getStatistics(): List<StatisticModel>
 
     @Query("Select * From statistic_table where date =:date ")
-    suspend fun getStatisticByDate(date: String): StatisticModel
+    suspend fun getStatisticByDate(date: String): StatisticModel?
+
+    @Query("Delete From statistic_table")
+    suspend fun deleteData()
+
 }

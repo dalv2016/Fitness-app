@@ -29,6 +29,9 @@ class ExerciseListViewModel @Inject constructor(private val mainDb: MainDb):View
              dayModel.execises.split(",").forEach{index->
                  tmpExerciseList.add(allExerciseList[index.toInt()])
              }
+             for (i in 0 until dayModel.doneExerciseCounter){
+                 tmpExerciseList[i] = tmpExerciseList[i].copy(isDone = true)
+         }
              exerciseList.value = tmpExerciseList
         }
     }

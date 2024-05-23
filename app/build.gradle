@@ -46,6 +46,10 @@ android {
 }
 dependencies {
 
+    //
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    //calendar
+    implementation group: 'com.applandeo', name: 'material-calendar-view', version: '1.9.0-rc04'
     //Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'

@@ -31,4 +31,7 @@ fun getProgress(list: List<DayModel>):Int{
     }
     return counter
 }
+     fun resetSelectDay(day:DayModel) = viewModelScope.launch {
+        mainDb.daysDao.insertDay(day.copy(doneExerciseCounter = 0, isDone = false))
+    }
 }

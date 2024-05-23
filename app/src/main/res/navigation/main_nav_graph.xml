@@ -26,4 +26,19 @@
         android:id="@+id/exerciseFragment"
         android:name="com.example.fitness_app.Fragments.ExerciseFragment"
         android:label="ExerciseFragment" />
+    <fragment
+        android:id="@+id/statisticFragment"
+        android:name="com.example.fitness_app.Fragments.StatisticFragment"
+        android:label="fragment_statistic"
+        tools:layout="@layout/fragment_statistic" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.fitness_app.Fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/customExerciseListFragment"
+        android:name="com.example.fitness_app.Fragments.CustomExerciseListFragment"
+        android:label="fragment_custom_exercise_list"
+        tools:layout="@layout/fragment_custom_exercise_list" />
 </navigation>

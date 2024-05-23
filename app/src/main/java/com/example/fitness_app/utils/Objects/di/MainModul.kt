@@ -1,4 +1,4 @@
-package com.example.fitness_app.di
+package com.example.fitness_app.utils.Objects.di
 
 import android.app.Application
 import androidx.room.Room

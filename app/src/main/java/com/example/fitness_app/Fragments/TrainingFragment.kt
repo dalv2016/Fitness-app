@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.fitness_app.databinding.FragmentTrainingBinding
@@ -29,6 +30,7 @@ class TrainingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val vpAdapter = VpAdapter(this)
+        (activity as AppCompatActivity).supportActionBar?.title = ""
         topCardObserver()
         binding.vp2.adapter = vpAdapter
         TabLayoutMediator(binding.tabLayout,binding.vp2){ tab,pos ->
@@ -49,7 +51,7 @@ class TrainingFragment : Fragment() {
             imageView3.setImageResource(card.imageId)
             imageView3.startAnimation(alfaAnimation)
             textView.setText(card.difficultybyTitle)
-            progressBar2.max = card.maxprogress
+            progressBar2.max = card.maxprogress * 100
             animProgressBar(card.progress)
             textView2.text = (card.maxprogress - card.progress).toString()
         }
