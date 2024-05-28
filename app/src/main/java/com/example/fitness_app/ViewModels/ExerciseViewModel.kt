@@ -1,4 +1,4 @@
-package com.example.fitness_app.utils.ViewModels
+package com.example.fitness_app.ViewModels
 
 import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData

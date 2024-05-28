@@ -1,7 +1,8 @@
-package com.example.fitness_app.utils.ViewModels
+package com.example.fitness_app.ViewModels
 
 import android.app.usage.UsageEvents.Event
 import android.provider.CalendarContract.EventDays
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -40,11 +41,13 @@ class StatisticViewModel @Inject constructor(private val mainDb: MainDb):ViewMod
 
     }
     fun getWeightByYearAndMonth() = viewModelScope.launch {
+
         weightListData.value = mainDb.weightDao.getMonthWeightList(year,month)
     }
     fun saveWeight(weight: Int) = viewModelScope.launch {
-        val caledar = Calendar.getInstance()
-        mainDb.weightDao.insertWeight(WeightModel(null, weight,caledar.get(Calendar.DAY_OF_MONTH),caledar.get(Calendar.MONTH),caledar.get(Calendar.YEAR)))
+        val calendar = Calendar.getInstance()
+        mainDb.weightDao.insertWeight(WeightModel(null, weight,calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.MONTH),calendar.get(Calendar.YEAR)))
+        getWeightByYearAndMonth()
     }
     fun yearList() = viewModelScope.launch {
         val tmpYearList = ArrayList<DataSelectorModel>()
@@ -55,5 +58,9 @@ class StatisticViewModel @Inject constructor(private val mainDb: MainDb):ViewMod
             }
         }
         yearListData.value = tmpYearList
+    }
+    fun updateWeight(weightModel: WeightModel) = viewModelScope.launch {
+        mainDb.weightDao.insertWeight(weightModel)
+        getWeightByYearAndMonth()
     }
     }

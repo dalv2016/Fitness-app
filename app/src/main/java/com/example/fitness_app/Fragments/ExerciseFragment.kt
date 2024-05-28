@@ -16,9 +16,8 @@ import com.example.fitness_app.R
 import com.example.fitness_app.db.ExerciseModel
 import com.example.fitness_app.databinding.ExerciseBinding
 import com.example.fitness_app.db.DayModel
-import com.example.fitness_app.utils.Objects.FragmentManager
 import com.example.fitness_app.utils.Objects.Time
-import com.example.fitness_app.utils.ViewModels.ExerciseViewModel
+import com.example.fitness_app.ViewModels.ExerciseViewModel
 import com.example.fitness_app.utils.getDayFromArguments
 import dagger.hilt.android.AndroidEntryPoint
 import pl.droidsonroids.gif.GifDrawable
@@ -55,7 +54,6 @@ class ExerciseFragment : Fragment() {
             }
             else {
                 model.nextExercise()
-                binding.progressBar3.max = 0
             }
             }
 
@@ -91,6 +89,7 @@ class ExerciseFragment : Fragment() {
     private fun showTime(exercise: ExerciseModel){
         if(exercise.time.startsWith("x") || exercise.time.isEmpty()){
             binding.tvTime.text = exercise.time
+            binding.progressBar3.progress =0
         }
         else{
             binding.progressBar3.max = exercise.time.toInt() * 1000
@@ -140,49 +139,4 @@ class ExerciseFragment : Fragment() {
         super.onPause()
         model.onPause()
     }
-   /*   private var exList: ArrayList<ExerciseModel>? = null
-        private var exerciseCounter = 0
-
-     private fun nextExercise(){
-        if (exerciseCounter<exList?.size!!){
-            val ex = exList?.get(exerciseCounter++) ?: return
-            showExercise(ex)
-            showTime(ex)
-            showNextExercise()
-            setTimeType(ex)
-        }
-        else{
-            exerciseCounter++;
-            FragmentManager.setFragment(DayFinishFragment.newInstance(), activity as AppCompatActivity)
-        }
-    }
-
-    private fun showNextExercise(){
-        if (exerciseCounter<exList?.size!!){
-            val ex = exList?.get(exerciseCounter) ?: return
-           // binding.imgNextExercise.setImageDrawable(GifDrawable(binding.root.context.assets,ex.image))
-        }
-        else{
-           // binding.imgNextExercise.setImageDrawable(GifDrawable(binding.root.context.assets,"congrats.gif"))
-            binding.tvName.text = "Done"
-        }
-    }
-   private fun showExercise(exercise: ExerciseModel?) {
-
-        binding.imgCurrentExercise.setImageDrawable(exercise?.image?.let { GifDrawable(binding.root.context.assets, it) })
-        binding.tvName.text = exercise?.name
-        val title = "$exerciseCounter / ${exList?.size}"
-        ab?.title = title
-    }
-
-    private fun setTimeType(exercise: ExerciseModel){
-        if(exercise.time.startsWith("x")){
-            binding.tvNextName.text = exercise.time
-        }
-        else{
-            val name = exercise.name +": ${Time.getTime((exercise.time.toLong()*1000))}"
-            binding.tvNextName.text = name
-        }
-    }*/
-
 }

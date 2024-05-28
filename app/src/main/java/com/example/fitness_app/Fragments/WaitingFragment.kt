@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.fitness_app.databinding.WaitingFragmentBinding
-import com.example.fitness_app.utils.ViewModels.MainViewModel
+import com.example.fitness_app.ViewModels.MainViewModel
 import com.example.fitness_app.utils.Objects.Time
 
 

@@ -37,8 +37,19 @@
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
-        android:id="@+id/customExerciseListFragment"
-        android:name="com.example.fitness_app.Fragments.CustomExerciseListFragment"
+        android:id="@+id/customExercisesListFragment"
+        android:name="com.example.fitness_app.Fragments.CustomExercisesListFragment"
         android:label="fragment_custom_exercise_list"
         tools:layout="@layout/fragment_custom_exercise_list" />
+    <fragment
+        android:id="@+id/customDaysListFragment"
+        android:name="com.example.fitness_app.Fragments.CustomDaysListFragment"
+        android:label="fragment_custom_days_list"
+        tools:layout="@layout/fragment_custom_days_list" />
+    <fragment
+        android:id="@+id/chooseExerciseFragment"
+        android:name="com.example.fitness_app.Fragments.ChooseExerciseFragment"
+        android:label="fragment_choose_exercise"
+        tools:layout="@layout/fragment_choose_exercise" />
+
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.fitness_app.utils.ViewModels
+package com.example.fitness_app.ViewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,8 +26,9 @@ class ExerciseListViewModel @Inject constructor(private val mainDb: MainDb):View
         val allExerciseList = mainDb.exerciseDao.getAllExercises()
         val tmpExerciseList = ArrayList<ExerciseModel>()
          day?.let{dayModel ->
-             dayModel.execises.split(",").forEach{index->
-                 tmpExerciseList.add(allExerciseList[index.toInt()])
+             dayModel.execises.split(",").forEach{id->
+                 if(id.isEmpty())return@forEach
+                 tmpExerciseList.add(allExerciseList.filter { it.id == id.toInt() }[0])
              }
              for (i in 0 until dayModel.doneExerciseCounter){
                  tmpExerciseList[i] = tmpExerciseList[i].copy(isDone = true)
@@ -39,6 +40,9 @@ class ExerciseListViewModel @Inject constructor(private val mainDb: MainDb):View
     fun getTopCardData(day: DayModel){
         var index = 0
         when(day.difficulty){
+            "easy"-> {
+                index=0;
+            }
             "middle" -> {
                 index=1
             }

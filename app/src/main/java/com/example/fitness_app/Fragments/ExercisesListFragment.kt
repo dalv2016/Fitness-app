@@ -15,7 +15,7 @@ import com.example.fitness_app.Adapters.ExrciseAdapter
 import com.example.fitness_app.R
 import com.example.fitness_app.databinding.ExercisesListFragmentBinding
 import com.example.fitness_app.db.DayModel
-import com.example.fitness_app.utils.ViewModels.ExerciseListViewModel
+import com.example.fitness_app.ViewModels.ExerciseListViewModel
 import com.example.fitness_app.utils.getDayFromArguments
 
 
@@ -43,12 +43,6 @@ class ExercisesListFragment : Fragment() {
         exerciseListObserver()
         dayModel = getDayFromArguments()
         model.getDayExerciseList(dayModel)
-        /*model.mutavleListExetces.observe(viewLifecycleOwner){
-            adapter.submitList(it)
-            for( i in 0 until model.getPref()){
-            it[i] = it[i].copy(isDone = true)
-        }
-        }*/
 
     }
     private fun init () {
@@ -57,7 +51,7 @@ class ExercisesListFragment : Fragment() {
         binding.rcView.adapter = adapter
         binding.button.setOnClickListener{
             val bundle = Bundle().apply {
-                putSerializable("dau", dayModel)
+                putSerializable("day", dayModel)
             }
             findNavController().navigate(R.id.action_exercisesListFragment_to_exerciseFragment, bundle)
         }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -12,14 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitness_app.db.DayModel
 import com.example.fitness_app.Adapters.DaysAdapter
 import com.example.fitness_app.R
-import com.example.fitness_app.intarfaces.Listener
 import com.example.fitness_app.databinding.DaysFragmentBinding
-import com.example.fitness_app.intarfaces.DialogListener
-import com.example.fitness_app.utils.ViewModels.DaysViewModel
+import com.example.fitness_app.ViewModels.DaysViewModel
 import com.example.fitness_app.utils.Objects.DialogManager
 
 
-class DaysFragment : Fragment(), Listener {
+class DaysFragment : Fragment(), DaysAdapter.Listener {
 
     private lateinit var binding: DaysFragmentBinding
     private lateinit var adapter: DaysAdapter
@@ -77,8 +76,11 @@ class DaysFragment : Fragment(), Listener {
         }
     })
 }
+        else if (day.execises.isEmpty()){
+            Toast.makeText(requireContext(),"No exercises",Toast.LENGTH_SHORT).show()
+        }
         else{
-        openEcersiceListFragment(day)
+            openEcersiceListFragment(day)
         }
 }
 

@@ -1,4 +1,4 @@
-package com.example.fitness_app.utils.ViewModels
+package com.example.fitness_app.ViewModels
 
 import android.view.View
 import androidx.lifecycle.ViewModel

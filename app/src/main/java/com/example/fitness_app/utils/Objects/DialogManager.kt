@@ -6,8 +6,6 @@ import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import com.example.fitness_app.R
 import com.example.fitness_app.databinding.WeightDialogBinding
-import com.example.fitness_app.db.DayModel
-import com.example.fitness_app.intarfaces.DialogListener
 
 object DialogManager {
     fun showDialog(context: Context,mID: String, listener : Listener ){
@@ -26,7 +24,7 @@ object DialogManager {
         dialog.show()
     }
 
-    fun showDialog(context: Context, listener : WeightListener ){
+    fun showWeightDialog(context: Context, listener : WeightListener,weight: String="0" ){
         var builder = AlertDialog.Builder(context)
         var dialog = builder.create()
         val binding = WeightDialogBinding.inflate(LayoutInflater.from(context))
@@ -34,10 +32,12 @@ object DialogManager {
 
         binding.apply {
             btnSave.setOnClickListener{
+
                 listener.onClick(editWeight.text.toString())
                 dialog.dismiss()
             }
             btnCancle.setOnClickListener {
+                editWeight.setText(weight)
                 dialog.dismiss()
             }
         }

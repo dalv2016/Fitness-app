@@ -1,7 +1,5 @@
 package com.example.fitness_app.db
 
-import android.os.CountDownTimer
-import android.text.BoringLayout
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

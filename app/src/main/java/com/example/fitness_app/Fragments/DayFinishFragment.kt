@@ -9,7 +9,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.example.fitness_app.databinding.DayFinishBinding
-import com.example.fitness_app.utils.ViewModels.MainViewModel
+import com.example.fitness_app.ViewModels.MainViewModel
 import pl.droidsonroids.gif.GifDrawable
 
 

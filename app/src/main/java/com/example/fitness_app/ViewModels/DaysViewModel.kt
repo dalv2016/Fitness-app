@@ -1,5 +1,6 @@
-package com.example.fitness_app.utils.ViewModels
+package com.example.fitness_app.ViewModels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +8,7 @@ import com.example.fitness_app.db.DayModel
 import com.example.fitness_app.db.MainDb
 import com.example.fitness_app.utils.Objects.TrainingTopCardModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,6 +16,7 @@ import javax.inject.Inject
 class DaysViewModel @Inject constructor(private val mainDb:MainDb)  : ViewModel()  {
     val daysList  = MutableLiveData<List<DayModel>>()
     val topCardUpdate  = MutableLiveData<TrainingTopCardModel>()
+    val isCustomListEmpty  = MutableLiveData<Boolean>()
 fun getExerciseDayByDifficulty(trainingTopCardModel: TrainingTopCardModel){
     viewModelScope.launch {
         mainDb.daysDao.getDaysByDifficulty(trainingTopCardModel.difficulty).collect{list ->
@@ -22,6 +25,11 @@ fun getExerciseDayByDifficulty(trainingTopCardModel: TrainingTopCardModel){
         }
     }
 }
+    fun getCustomDayList() = viewModelScope.launch {
+        mainDb.daysDao.getDaysByDifficulty("custom").collect{
+            isCustomListEmpty.value = it.isEmpty()
+        }
+    }
 fun getProgress(list: List<DayModel>):Int{
     var counter =0;
     list.forEach{day->

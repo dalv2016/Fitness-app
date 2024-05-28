@@ -9,19 +9,23 @@ class ExerciseHelper @Inject constructor() {
 
     fun createExerciseListWithRelax(list: List<ExerciseModel>) : List<ExerciseModel>{
         val tmpList = ArrayList<ExerciseModel>()
-        tmpList.forEach { exercise ->
-        tmpList.add(exercise.copy(time = "20", subTitle = "Relax" ))
+        list.forEachIndexed() {index, exercise ->
+        tmpList.add(exercise.copy(time = "20", subTitle = if(index== 0) {"getReady"}else{"Relax"} ))
             tmpList.add(exercise.copy(subTitle = "Start" ))
         }
         tmpList.add(ExerciseModel(null,"Finish","Day finished", 0,"",false,"congrats.gif"))
         return tmpList
     }
     fun getExerciseOfTheDay(exercises: String, list: List<ExerciseModel>) : List<ExerciseModel>{
-        val exercicesIndexArray = exercises.split(",")
+        val exercicesIdArray = exercises.split(",")
         val tmpList = ArrayList<ExerciseModel>()
 
         for(i in exercises.indices){
-            tmpList.add(list[exercicesIndexArray[i].toInt()])
+            if( exercicesIdArray[i].isNotEmpty()) {
+                val exerciseId = exercicesIdArray[i].toInt()
+                val exerciseItem = list.filter { it.id == exerciseId }[0]
+                tmpList.add(exerciseItem)
+            }
         }
         return tmpList
     }

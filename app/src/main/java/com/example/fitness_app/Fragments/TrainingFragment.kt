@@ -13,7 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.fitness_app.databinding.FragmentTrainingBinding
 import com.example.fitness_app.utils.Objects.TrainingUtils
 import com.example.fitness_app.Adapters.VpAdapter
-import com.example.fitness_app.utils.ViewModels.DaysViewModel
+import com.example.fitness_app.ViewModels.DaysViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class TrainingFragment : Fragment() {
@@ -29,18 +29,35 @@ class TrainingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val vpAdapter = VpAdapter(this)
+
         (activity as AppCompatActivity).supportActionBar?.title = ""
         topCardObserver()
+        isCustomTrainingEmpty()
+        model.getCustomDayList()
+    }
+
+    private fun isCustomTrainingEmpty(){
+        model.isCustomListEmpty.observe(viewLifecycleOwner){
+            val index= if(it){
+                1
+            }
+            else{
+                0
+            }
+            initVPAdapter(index)
+        }
+    }
+    private fun initVPAdapter(index:Int){
+        val vpAdapter = VpAdapter(this,index    )
         binding.vp2.adapter = vpAdapter
         TabLayoutMediator(binding.tabLayout,binding.vp2){ tab,pos ->
             tab.text = getString(TrainingUtils.tabTitles[pos])
 
-          }.attach()
+        }.attach()
         binding.vp2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                    model.getExerciseDayByDifficulty(TrainingUtils.topCardList[position])
+                model.getExerciseDayByDifficulty(TrainingUtils.topCardList[position])
             }
         })
     }

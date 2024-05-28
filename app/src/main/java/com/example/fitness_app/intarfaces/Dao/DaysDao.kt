@@ -1,6 +1,7 @@
 package com.example.fitness_app.intarfaces.Dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -15,9 +16,12 @@ interface DaysDao {
     @Query("Select * From day_model_table Where id = :dayId ")
     suspend fun getDayById(dayId: Int):DayModel
 
-    @Query("Select * From day_model_table Where difficulty = :difficulty")
+    @Query("SELECT * FROM day_model_table WHERE difficulty = :difficulty")
     fun getDaysByDifficulty(difficulty: String):Flow<List<DayModel>>
 
     @Query("Select * From day_model_table")
      suspend fun getAllDAys():List<DayModel>
+
+     @Delete
+     suspend fun deleteDay(dayModel: DayModel)
 }

@@ -2,7 +2,6 @@ package com.example.fitness_app.utils.Objects.di
 
 import android.app.Application
 import androidx.room.Room
-import androidx.transition.Visibility.Mode
 import com.example.fitness_app.db.MainDb
 import dagger.Module
 import dagger.Provides
@@ -16,10 +15,6 @@ object MainModul {
     @Provides
     @Singleton
     fun ProvideMainDB(app: Application):MainDb{
-    return  Room.databaseBuilder(
-        app,
-        MainDb::class.java,
-        "fitness.db"
-    ).createFromAsset("db/fitness.db").build()
+    return  Room.databaseBuilder(app,MainDb::class.java,"fitness.db").createFromAsset("db/fitness.db").build()
     }
 }

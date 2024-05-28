@@ -32,20 +32,9 @@ class ExrciseAdapter() : ListAdapter<ExerciseModel, ExrciseAdapter.ExerciseHolde
 
         fun setData(exercise: ExerciseModel){
             binding.tvName.text = exercise.name
-            binding.tvCounter.text = Time.getTime(exercise.time.toLong())
+            binding.tvCounter.text = getTime(exercise.time)
             binding.imageEx.setImageDrawable(GifDrawable(binding.root.context.assets, exercise.image))
             binding.imageView2.visibility = if(exercise.isDone) View.VISIBLE else View.INVISIBLE
-        }
-
-        private fun getExerciseProgress(day: DayModel):String{
-            val totalExercise = day.execises.split(",").size
-            return if(day.isDone) {
-                "Done"
-            }else {
-                "$totalExercise " + "exercises | Progress: " + (day.doneExerciseCounter * 100) / totalExercise + "%"
-            }
-            }
-
         }
         private fun getTime(time: String): String{
             return if (time.startsWith("x")){
@@ -55,6 +44,10 @@ class ExrciseAdapter() : ListAdapter<ExerciseModel, ExrciseAdapter.ExerciseHolde
                 Time.getTime(time.toLong()+1000)
             }
         }
+
+
+        }
+
     class MyCoparator : DiffUtil.ItemCallback<ExerciseModel>() {
 
         override fun areItemsTheSame(oldItem: ExerciseModel, newItem: ExerciseModel): Boolean {
